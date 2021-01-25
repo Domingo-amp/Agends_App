@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<h3>Edita Tu Contacto</h3>
+<div class="col-md-4 offset-md-4 editContact">
+    <div class="card card-body">
+        <form action="/update/{{contact.0}}" method="POST">
+            <div class="form-group">
+                <input type="text" name="nombre" placeholder="FullName" value="{{ contact.1 }}" class="form-control marginB-10"/>
+            </div>
+            <div class="form-group">
+                <input type="text" name="apellido" placeholder="Phone" value="{{ contact.2 }}" class="form-control marginB-10"/>
+            </div>
+            <div class="form-group">
+                <input type="text" name="telefono" placeholder="Email" value="{{ contact.3 }}" class="form-control marginB-10"/>
+            </div>
+            <div class="form-group">
+                <input type="text" name="email" placeholder="Email" value="{{ contact.4 }}" class="form-control marginB-10"/>
+            </div>
+            <div class="form-group">
+                <textarea name="descripcion" rows="3" placeholder="Descripcion" class="form-control marginB-10">{{ contact.5 }}</textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+{% endblock %}

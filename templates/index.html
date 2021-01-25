@@ -1,0 +1,82 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<h3>Agrega un Nuevo Contacto</h3>
+    <div class="Inline-Block newContact">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{message}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        <div class="card card-body">
+            <form action="/add_contact" method="POST">
+                <div class="form-group">
+                    <input type="text" name="nombre" placeholder="Nombre" class="form-control marginB-10"/>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="apellido" placeholder="Apellido" class="form-control marginB-10"/>
+                </div>
+                <div class="form-group">
+                    <input type="number" name="telefono" placeholder="Telefono" class="form-control marginB-10"/>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" class="form-control marginB-10"/>
+                </div>
+                <div class="form-group">
+                    <textarea name="descripcion" placeholder="Descripcion" rows="3" class="form-control marginB-10"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-block">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+<h3>Tus Contactos</h3>
+<div class="Inline-Block contactosAgg">
+    <table class="table table-striped table-bordered bg-white table-sm">
+        <thead>
+            <tr>
+                <td>Nombre</td>
+                <td>Apellido</td>
+                <td>Telefono</td>
+                <td>Email</td>
+                <td>Descripcion</td>
+                <td>Operaciones</td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contact in contacts %}
+                <tr>
+                    <td>{{ contact.1 }}</td>
+                    <td>{{ contact.2 }}</td>
+                    <td>{{ contact.3 }}</td>
+                    <td>{{ contact.4 }}</td>
+                    <td>{{ contact.5 }}</td>
+                    <td>
+                        <a href="/edit/{{ contact.0 }}" class="btn btn-secondary">Edit</a>
+                        <a href="/delete/{{contact.0}}" class="btn btn-danger btn-delete">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+{% endblock %}
